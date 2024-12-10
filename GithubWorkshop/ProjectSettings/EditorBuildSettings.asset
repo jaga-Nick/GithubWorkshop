@@ -11,4 +11,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/WorkShop/Work1/Scenes/Work1Main.unity
     guid: 367fc5bc5119b3f49b0da7d966642304
+  - enabled: 1
+    path: Assets/WorkShop/Work2/Scenes/Work2Title.unity
+    guid: 2228dd98588f24940b28ced899c9c21c
+  - enabled: 1
+    path: Assets/WorkShop/Work2/Scenes/Work2Main.unity
+    guid: f87cec65c899bf94c8241b1cead258e3
+  - enabled: 1
+    path: Assets/WorkShop/Work3/Scenes/Work3Title.unity
+    guid: 357a8b76b38f1e046892aa745a2a5fc0
+  - enabled: 1
+    path: Assets/WorkShop/Work3/Scenes/Work3Main.unity
+    guid: f3b88ad56e31d054ea9017be8897e85d
+  - enabled: 1
+    path: Assets/WorkShop/Work3/Scenes/Work3Result.unity
+    guid: 265defb0d5055ae42b0072c220275ead
   m_configObjects: {}

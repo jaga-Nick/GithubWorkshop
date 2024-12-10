@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.UI;
 
-public class Work2Count : MonoBehaviour
+public class Work3Count : MonoBehaviour
 {
     public Button countButton;
     public Text scoreText;
@@ -46,12 +46,13 @@ public class Work2Count : MonoBehaviour
             if(GameManager.score >= clearScore)
             {
                 Debug.Log("ゲームクリア");
+                GameManager.isClear = true;
             }
             else
             {
                 Debug.Log("ゲームオーバー");
             }
-            GameManager.GetInstance().EndGame();
+            GameManager.GetInstance().Work3Result();
         }
 
     }

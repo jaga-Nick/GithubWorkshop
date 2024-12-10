@@ -6,8 +6,8 @@ using UnityEngine.Assertions;
 
 public class Work1Start : MonoBehaviour
 {
-    public Button startButton;
-    public Button quitButton;
+    public GameObject startButton;
+    public GameObject quitButton;
 
     void Start()
     {
@@ -33,16 +33,23 @@ public class Work1Start : MonoBehaviour
     }
 
     // buttonを登録する関数
-    void ButtonRegistration(Button _button)
+    void ButtonRegistration(GameObject _buttonObj)
     {
         //IsNotNullはnullでない事を確認する(nullであればエラーを出す)
-        Assert.IsNotNull(_button, "_buttonはnullです！");
-        // buttonにButtonProssesをOnClickとして登録する．
-        _button.onClick.AddListener(ButtonProsses);
+        Assert.IsNotNull(_buttonObj, "_buttonはnullです！");
+
+        Button button = _buttonObj.GetComponent<Button>();
+
+        if(_buttonObj.name == startButton.name)
+        {
+            // buttonにButtonProssesをOnClickとして登録する．
+            button.onClick.AddListener(ButtonProsses);
+        }else if(_buttonObj.name == quitButton.name)
+        {
+            // buttonにQuitGameをOnClickとして登録する．
+            button.onClick.AddListener(QuitGame);
+        }
     }
 
-    void OnClick()
-    {
-        GameManager.GetInstance().Work1Game();// Mainシーンに移動
-    }
+
 }

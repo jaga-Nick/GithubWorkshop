@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Assertions;
 
-public class Work2Start : MonoBehaviour
+public class Work3Start : MonoBehaviour
 {
     public GameObject startButton;
     public GameObject quitButton;
@@ -24,7 +24,7 @@ public class Work2Start : MonoBehaviour
     //登録される関数 OnClickと同じ
     void ButtonProsses()
     {
-        GameManager.GetInstance().Work2Game();// Mainシーンに移動
+        GameManager.GetInstance().Work3Game();// Mainシーンに移動
     }
 
     void QuitGame()

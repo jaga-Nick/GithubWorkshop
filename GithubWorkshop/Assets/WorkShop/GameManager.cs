@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] AudioSource audioSorceBGM;
 
     public static int score;
+    public static bool isClear;
 
     #region シングルトン
     public static GameManager GetInstance()
@@ -36,6 +37,12 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
     #endregion
+
+    public void Init()
+    {
+        score = 0;
+        isClear = false;
+    }
 
 
     #region Work1
