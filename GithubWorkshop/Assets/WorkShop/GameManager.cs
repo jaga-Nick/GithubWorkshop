@@ -154,6 +154,29 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
+
+    #region Custom
+    /*========================================================*/
+    // Work4
+
+    public void CustomTitle() //タイトル
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Title");
+    }
+
+    public void CustomGame() //メインゲーム
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Main");
+    }
+
+    public void CustomResult() //リザルト
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Result");
+    }
+
+    #endregion
+
+
     public void EndGame() //Quit
     {
         /*
