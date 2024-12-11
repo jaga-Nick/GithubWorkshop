@@ -26,4 +26,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/WorkShop/Work3/Scenes/Work3Result.unity
     guid: 265defb0d5055ae42b0072c220275ead
+  - enabled: 1
+    path: Assets/WorkShop/Work4/Scenes/Work4Title.unity
+    guid: 7b243d5338717e54f83ced0aad9259d3
+  - enabled: 1
+    path: Assets/WorkShop/Work4/Scenes/Work4Main.unity
+    guid: 92249af41577fd2418056ccba0807049
+  - enabled: 1
+    path: Assets/WorkShop/Work4/Scenes/Work4Result.unity
+    guid: e81b3fbd99aea794db6b60ee82919741
   m_configObjects: {}

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,11 +13,20 @@ public class GameManager : MonoBehaviour
     [SerializeField] AudioClip[] bgmLists;
 
     //音の鳴らし方指定
+    [Header("SEのAudioSorce")]
     [SerializeField] AudioSource audioSorceSE;
+    [Header("SEのAudioSorce")]
     [SerializeField] AudioSource audioSorceBGM;
+
+    [Header("スライダー")]
+    public Slider seSlider;
+    public Slider bgmSlider;
 
     public static int score;
     public static bool isClear;
+
+    float seVolume;
+    float bgmVolume;
 
     #region シングルトン
     public static GameManager GetInstance()
@@ -37,6 +47,33 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
     #endregion
+
+    void Start()
+    {
+        if(seSlider != null && bgmSlider != null)
+        {
+            seSlider.onValueChanged.AddListener(delegate { OnSEVolumeChange(); });
+            bgmSlider.onValueChanged.AddListener(delegate { OnBGMVolumeChange(); });
+        }
+        PlayBGM(0);
+    }
+
+    private void Update()
+    {
+        if (!Work4Start.isHome)
+        {
+            if (seSlider == null && bgmSlider == null)
+            {
+                seSlider = GameObject.Find("Canvas/Setting/SE/Slider").GetComponent<Slider>();
+                bgmSlider = GameObject.Find("Canvas/Setting/BGM/Slider").GetComponent<Slider>();
+                seSlider.onValueChanged.AddListener(delegate { OnSEVolumeChange(); });
+                bgmSlider.onValueChanged.AddListener(delegate { OnBGMVolumeChange(); });
+            }
+
+            seSlider.value = SEVolume;
+            bgmSlider.value = BGMVolume;
+        }
+    }
 
     public void Init()
     {
@@ -120,7 +157,7 @@ public class GameManager : MonoBehaviour
     public void EndGame() //Quit
     {
         /*
-         * これはプリプロセッサコンパイルでビルド時には対応している方のみがコンパイルされる
+         * これはプリプロセッサでビルド時には対応している方のみがコンパイルされる
         */
         #if UNITY_EDITOR //unity内でゲーム時
                 UnityEditor.EditorApplication.isPlaying = false;
@@ -131,6 +168,36 @@ public class GameManager : MonoBehaviour
 
 
     #region SE・BGM操作
+
+    // BGMの値が変更されたときの処理
+    public void OnBGMVolumeChange()
+    {
+        //bgmVolume = bgmSlider.value;
+        audioSorceBGM.volume = bgmSlider.value; // AudioSourceに適用
+        PlayerPrefs.SetFloat("BGMVolume", bgmVolume); // 保存
+        PlayerPrefs.Save();
+    }
+
+    // SEの値が変更されたときの処理
+    public void OnSEVolumeChange()
+    {
+        //seVolume = seSlider.value;
+        audioSorceSE.volume = seSlider.value; // AudioSourceに適用
+        PlayerPrefs.SetFloat("SEVolume", seVolume); // 保存
+        PlayerPrefs.Save();
+    }
+
+    public float BGMVolume //BGM�{�����[��
+    {
+        get { return audioSorceBGM.volume; }
+        set { audioSorceBGM.volume = value; }
+    }
+
+    public float SEVolume //SE�{�����[��
+    {
+        get { return audioSorceSE.volume; }
+        set { audioSorceSE.volume = value; }
+    }
 
     public void PlaySound(int index) //SE再生
     {
